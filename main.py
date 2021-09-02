@@ -31,8 +31,8 @@ def main():
                 json.load(
                     buy_market_order(
                         timestamp=tm,
-                        api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
-                        secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
+                        api_key="",
+                        secret="",
                         quantity=quantity,
                     )
                 )
@@ -50,8 +50,8 @@ def main():
                 json.load(
                     sell_market_order(
                         timestamp=tm,
-                        api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
-                        secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
+                        api_key="",
+                        secret="",
                         quantity=quantity_bought,
                     )
                 )
