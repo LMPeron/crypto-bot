@@ -18,14 +18,14 @@ def start(bought, bought_price, quantity_bought):
             close, b_val = get_stat_by_minute()
             quantity = int(round(14 / float(b_val), 3))
             stats = format_stats(close)
-            f = open("log.txt", "a")
+            # f = open("log.txt", "a")
 
             # and (stats["diff"] > stats["macd"])
-            if stats["rsi"] < 90 and bought == False:
+            if stats["rsi"] < 30 and bought == False:
                 print("Compra -->" + b_val)
                 bought = True
-                f.writelines([f"Comprado em --> {b_val}"])
-                f.writelines([f" || as --> {datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}\n"])
+                # f.writelines([f"Comprado em --> {b_val}"])
+                # f.writelines([f" || as --> {datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}\n"])
                 quantity_bought = quantity
                 bought_price = b_val
                 print(quantity)
@@ -50,9 +50,9 @@ def start(bought, bought_price, quantity_bought):
             if stats["rsi"] > 70 and bought == True and b_val > bought_price:
                 print("Vende -->" + b_val)
                 bought = False
-                f.writelines([f"Vendido  em --> {b_val}"])
-                f.writelines([f" || as --> {datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}\n"])
-                f.writelines(["---------------------\n\n"])
+                # f.writelines([f"Vendido  em --> {b_val}"])
+                # f.writelines([f" || as --> {datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}\n"])
+                # f.writelines(["---------------------\n\n"])
 
 
                 quantity_bought = quantity_bought - quantity_bought * 0.015
