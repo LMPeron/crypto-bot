@@ -10,7 +10,7 @@ def buy_market_order(timestamp, api_key, secret, quantity, price):
     signature = hmac.new(secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256).hexdigest()
     conn.request(
         "POST",
-        '/api/v3/order/test?' + query_string + f'&signature={signature}',
+        '/api/v3/order?' + query_string + f'&signature={signature}',
         payload,
         headers,
     )
@@ -26,7 +26,7 @@ def sell_market_order(timestamp, api_key, secret, quantity, price):
     signature = hmac.new(secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256).hexdigest()
     conn.request(
         "POST",
-        '/api/v3/order/test?' + query_string + f'&signature={signature}',
+        '/api/v3/order?' + query_string + f'&signature={signature}',
         payload,
         headers,
     )
