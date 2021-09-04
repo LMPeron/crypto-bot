@@ -11,9 +11,9 @@ def get_stat_by_minute():
       #   date_format = f"{datetime.timestamp(date)}".split(".")
       #   date_str = (
       #       date_format[0]
-      #       + f"{date_format[1][0]}{date_format[1][1]}{date_format[1][2]}"
+      #       + f"{date_format[1][0]}{date_format[1][1]}{date_format[1][2]}" 
       #   )
-        res = get_candle_stick("XECBUSD", "1m", "1628202599999")
+        res = get_candle_stick("BTTBUSD", "1m", "1628103343000")
         close_list = []
         if (res):
             l = json.load(res)
