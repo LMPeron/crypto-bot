@@ -13,12 +13,12 @@ def start(bought, bought_price, quantity_bought):
     while True:
         try:
             close, b_val = get_stat_by_minute()
-            quantity = int(round(20 / float(b_val), 3))
+            quantity = int(round(12 / float(b_val), 3))
             stats = format_stats(close)
             # f = open("log.txt", "a")
 
             # and (stats["diff"] > stats["macd"])
-            if stats["rsi"] < 60 and bought == False:
+            if stats["rsi"] < 90 and bought == False:
                 print("Compra -->" + b_val)
                 bought = True
                 # f.writelines([f"Comprado em --> {b_val}"])
@@ -36,15 +36,15 @@ def start(bought, bought_price, quantity_bought):
                     json.load(
                         buy_market_order(
                             timestamp=tm,
-                            api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
-                            secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
+                            api_key="",
+                            secret="",
                             quantity=quantity,
                             # price=formatted_price
                         )
                     )
                 )
 
-            if stats["rsi"] > 60 and bought == True: #and b_val > bought_price:
+            if stats["rsi"] > 0 and bought == True: #and b_val > bought_price:
                 print("Vende -->" + b_val)
                 bought = False
                 # f.writelines([f"Vendido  em --> {b_val}"])
@@ -62,8 +62,8 @@ def start(bought, bought_price, quantity_bought):
                     json.load(
                         sell_market_order(
                             timestamp=tm,
-                            api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
-                            secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
+                            api_key="",
+                            secret="",
                             quantity=quantity_bought,
                             # price=formatted_price
                         )
