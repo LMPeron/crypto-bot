@@ -21,7 +21,7 @@ def start(bought, bought_price, quantity_bought):
             f = open("log.txt", "a")
 
             # and (stats["diff"] > stats["macd"])
-            if stats["rsi"] < 30 and bought == False:
+            if stats["rsi"] < 90 and bought == False:
                 print("Compra -->" + b_val)
                 bought = True
                 f.writelines([f"Comprado em --> {b_val}"])
@@ -29,16 +29,20 @@ def start(bought, bought_price, quantity_bought):
                 quantity_bought = quantity
                 bought_price = b_val
                 print(quantity)
+
+                # formatted_price = "{:.6f}".format(float(b_val))
+                # print(formatted_price)
+
                 t = get_server_time()
                 tm = json.load(t)["serverTime"]
                 print(
                     json.load(
                         buy_market_order(
                             timestamp=tm,
-                            api_key="5oGo1UeJhwe2wuZqhrsNPF75RtE0mvfhnC8nT9qzcmJiyq7OsBYXmeRqbeg3aa79",
-                            secret="9eGhTaIMRE70jLnaBb118j1N1WNCfafmV3V5OV8BeqEM0XZ9KDTBaTh9YelFB5oB",
+                            api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
+                            secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
                             quantity=quantity,
-                            price=b_val
+                            # price=formatted_price
                         )
                     )
                 )
@@ -49,17 +53,24 @@ def start(bought, bought_price, quantity_bought):
                 f.writelines([f"Vendido  em --> {b_val}"])
                 f.writelines([f" || as --> {datetime.now().strftime('%m/%d/%Y, %H:%M:%S')}\n"])
                 f.writelines(["---------------------\n\n"])
-                print(quantity_bought)
+
+
+                quantity_bought = quantity_bought - quantity_bought * 0.015
+
+
+                # formatted_price = "{:.6f}".format(float(b_val))
+                # print(formatted_price)
+
                 t = get_server_time()
                 tm = json.load(t)["serverTime"]
                 print(
                     json.load(
                         sell_market_order(
                             timestamp=tm,
-                            api_key="5oGo1UeJhwe2wuZqhrsNPF75RtE0mvfhnC8nT9qzcmJiyq7OsBYXmeRqbeg3aa79",
-                            secret="9eGhTaIMRE70jLnaBb118j1N1WNCfafmV3V5OV8BeqEM0XZ9KDTBaTh9YelFB5oB",
+                            api_key="DAePl6JzIE2K92vHGHucJcC0ZiwDLPlefxVDwr1QW91NpB9mpQAgExTNijHCNR6s",
+                            secret="euqAsojeNQOTTBZigHp1H4SloIFKVc0A9IZ9KtibSn7Slv77ChBK5a4WEliGhObD",
                             quantity=quantity_bought,
-                            price=b_val
+                            # price=formatted_price
                         )
                     )
                 )
@@ -70,6 +81,6 @@ def start(bought, bought_price, quantity_bought):
         except:
             print("Desconectado.")
             time.sleep(2)
-            start(bought, bought_price, quantity_bought)
+            start(bought=bought, bought_price=bought_price, quantity_bought=quantity_bought)
 
 main()
