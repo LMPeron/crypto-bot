@@ -6,7 +6,7 @@ def buy_market_order(timestamp, api_key, secret, quantity):
     conn = http.client.HTTPSConnection("api.binance.com")
     payload = ""
     headers = {"Content-Type": "application/json", "X-MBX-APIKEY": api_key}
-    query_string = f'symbol=XECBUSD&side=BUY&quantity={quantity}&type=MARKET&timestamp={timestamp}'
+    query_string = f'symbol=BTTBUSD&side=BUY&quantity={quantity}&type=MARKET&timestamp={timestamp}'
     signature = hmac.new(secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256).hexdigest()
     conn.request(
         "POST",
@@ -22,7 +22,7 @@ def sell_market_order(timestamp, api_key, secret, quantity):
     conn = http.client.HTTPSConnection("api.binance.com")
     payload = ""
     headers = {"Content-Type": "application/json", "X-MBX-APIKEY": api_key}
-    query_string = f'symbol=XECBUSD&side=SELL&quantity={quantity}&type=MARKET&timestamp={timestamp}'
+    query_string = f'symbol=BTTBUSD&side=SELL&quantity={quantity}&type=MARKET&timestamp={timestamp}'
     signature = hmac.new(secret.encode('utf-8'), query_string.encode('utf-8'), hashlib.sha256).hexdigest()
     conn.request(
         "POST",
